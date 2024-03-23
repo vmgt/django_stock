@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+	{{ ticker }}
+{% endif%}
+
+<br/>
+<br/>
+
+{% if api %}
+	{% if api == "Error.." %}
+		Stock symbol Incorrect, Please Try again
+	{% else %}
+
+		{% for thing in api %}
+			
+			{% if thing.companyName %}
+				<h1>{{ thing.companyName }}</h1><br/>
+				Price: ${{ thing.close }}<br/>
+				Previous Close: ${{ thing.previousClose }}<br/>
+			{% else %}
+				Stock symbol Incorrect, Please Try again
+			{% endif %}
+
+		{% endfor %}
+
+	{% endif %}
+{% endif %}
+
+{% endblock %}
